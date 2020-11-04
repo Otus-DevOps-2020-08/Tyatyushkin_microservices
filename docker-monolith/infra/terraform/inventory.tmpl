@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [ "$1" == "--list" ] ; then
+cat<<EOF
+{
+   "docker":
+	${jsonencode({"hosts": [for docker_ip in docker_ip: "${docker_ip}"],
+	})}
+}
+EOF
+elif [ "$1" == "--host" ]; then
+  echo '{"_meta": {"hostvars": {}}}'
+else
+  echo "{ }"
+fi
