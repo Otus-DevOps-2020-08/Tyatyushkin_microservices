@@ -1,0 +1,14 @@
+#!/bin/bash
+
+if [ "$1" == "--list" ] ; then
+cat<<EOF
+{
+   "docker":
+	{"hosts":["178.154.229.101"]}
+}
+EOF
+elif [ "$1" == "--host" ]; then
+  echo '{"_meta": {"hostvars": {}}}'
+else
+  echo "{ }"
+fi

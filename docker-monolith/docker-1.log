@@ -1,0 +1,7 @@
+REPOSITORY                   TAG                 IMAGE ID            CREATED              SIZE
+tyatyushkin/ubunt-tmp-file   latest              fce3e469d079        About a minute ago   63.2MB
+ubuntu                       18.04               56def654ec22        5 weeks ago          63.2MB
+hello-world                  latest              bf756fb1ae65        10 months ago        13.3kB
+
+1) В образе содержится статическая информация о слоях и описание
+2) В контенере еще описываются инфраструктурные элементы сеть, volume, запущенные процесы.

@@ -1,0 +1,21 @@
+---
+- name: start reddit
+  hosts: all
+  become: true
+  tasks:
+  - name: install pip
+    apt:
+      name: python-pip
+      state: latest
+  - name: Install Docker Module for Python
+    pip:
+      name: docker
+      executable: pip
+  - name: start docker
+    docker_container:
+      name: reddit
+      image: tyatyushkin/otus-reddit:1.0
+      ports:
+        - "9292:9292"
+      state: started
+      restart: yes
