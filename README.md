@@ -4,6 +4,44 @@
 Tyatyushkin microservices repository
 
 ---
+
+### Docker-3
+
+#### Выполненные работы
+
+1. Разбиваем наше приложение на несколько компонентов
+2. Запускаем наше приложение
+3. Оптимизируем наше приложение
+4. Используем volume
+
+#### Задания со ⭐
+1. Запуск контенеров с другими алиасами и передача данных с помощью переменных.
+```
+docker run -d --network=reddit --network-alias=post_db_01 --network-alias=comment_db_01 mongo:latest
+docker run -d --network=reddit -e POST_DATABASE_HOST=post_db_01 -e POST_DATABASE=posts_01 --network-alias=post_01 tyatyushkin/post:1.0 
+docker run -d --network=reddit -e COMMENT_DATABASE_HOST=comment_db_01 -e ENV COMMENT_DATABASE=comments_01 --network-alias=comment_01 tyatyushkin/comment:1.0
+docker run -d --network=reddit -e  POST_SERVICE_HOST=post_01 -e COMMENT_SERVICE_HOST=comment_01 -p 9292:9292 tyatyushkin/ui:1.0
+```
+2. Образ на основе alpine **Dockerfile.01**.
+```
+FROM alpine:3.6
+RUN apk update --no-cache \
+    && apk add --no-cache ruby ruby-dev ruby-bundler build-base \
+    && gem install bundler --no-rdoc --no-ri \
+    && rm -rf /var/cache/apk/*
+```
+собираем:
+```
+docker build -t tyatyushkin/ui:3.0 ./ui --file ui/Dockerfile.01
+```
+сравниваем:
+```
+REPOSITORY            TAG                 IMAGE ID            CREATED             SIZE
+tyatyushkin/ui        3.0                 f7d69fec86dc        16 seconds ago      205MB
+tyatyushkin/ui        2.0                 987ce8d58d81        16 minutes ago      462MB
+```
+
+---
 ## Введение в Docker
 
 #### Выполненные работы
