@@ -4,6 +4,48 @@
 Tyatyushkin microservices repository
 
 ---
+### Docker-4
+
+#### Выполненные работы:
+
+1. Работа с сетями: *none*, *host*, *bridge*
+2. Распределение проекта на работу с несколькими сетями
+3. Запускаем проект с помощью **docker-compose**
+4. Запуск проекта с несколькими сетями, создаем 2 сети и затем указываем на каких образах их использовать
+```
+networks:
+  front_net:
+  back_net:
+```
+5. Параметризуем переменные окружения с помощью файла *.env*
+```
+USERNAME=tyatyushkin
+PORT=9292
+VERS=1.0
+```
+6. Чтобы указать наименование проекта его необходимо запустить с ключим -p, так же можно указать назание контейнеров с помощью директивы **container_name**
+```
+docker-compose -p project-name up -d
+```
+
+#### Задания со ⭐
+1. Создаем файл docker-compose.override.yml
+2. Для запуска puma с нужными параметрами используем изменение директивы **CMD**
+```
+  ui:
+    command: puma --debug -w 2
+  comment:
+    command: puma --debug -w 2
+```
+3. Для изменения исходного кода без пересборки образов мы можем использовать подключаемые **volume**
+```
+    volumes:
+      - /home/masterplan/newapp:/app
+```
+4. Для запуска файла следующих команд: *docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d*
+
+
+---
 
 ### Docker-3
 
